@@ -4,7 +4,6 @@ module.exports = function(app){
 	var x = require('../controller/author');
 
 	var init = function(){
-		console.log(0);
 			
 	};
 
@@ -22,7 +21,9 @@ module.exports = function(app){
 		}else if(!book.image){
 			callback(new Error("Book Cover Image is required"), null);
 		}else if(!book.author){
-			callback(new Error("Book Author is required"), null);		
+			callback(new Error("Book Author is required"), null);
+		}else if(!book.category){
+			callback(new Error("Book Category is required"), null);			
 		}else{
 			var bookObj = new bookModel({
 				title:book.title,
@@ -30,7 +31,9 @@ module.exports = function(app){
 				isbn:book.isbn,
 				image:book.image,
 				author:book.author,
-				category:book.category
+				category:book.category,
+				author_id:book._id,
+				category_id:book._id
 
 			});
 			bookObj.save(callback);	

@@ -18,7 +18,7 @@ module.exports = function(app){
 	 */
 	var authorList = function(filter, skip, limit, callback){
 		filter = filter || {};
-		limit  = limit  || 100;
+		limit  = limit  || 10;
 		skip   = skip   || 0;
 		AuthorModel.find(filter).limit(limit).skip(skip).exec(callback);
 	}
@@ -48,9 +48,7 @@ module.exports = function(app){
 			authorObj.save(function(err, obj){
 				if(err)
 					return console.log(err);
-				authorObj.save(obj._id);
-				var ID = obj._id;
-				console.log(ID);	
+				authorObj.save(obj._id);	
 				authorObj.save(callback);
 
 			});	

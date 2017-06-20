@@ -28,7 +28,12 @@ module.exports = function(app){
 			var categoryObj = new CategoryModel({
 				name:category.name,
 			});
-			categoryObj.save(callback);	
+			categoryObj.save(function(err, obj){
+				if(err)
+					return console.log(err);
+				categoryObj.save(obj._id);	
+				categoryObj.save(callback);
+			})
 		}
 	};
 

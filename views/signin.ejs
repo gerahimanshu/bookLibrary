@@ -76,7 +76,24 @@
     <form class="form-horizontal" action="/signin" method="post">
     <fieldset>
     <legend>Sign In</legend>
-    :)
+    <div class="form-group">
+        <label for="name" class="col-lg-2 control-label">UserName: </label>
+        <div class="col-lg-10">
+            <input class="form-control" id="uname" type="text" name="uname" placeholder="Enter your UserName">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title" class="col-lg-2 control-label">Password: </label>
+        <div class="col-lg-10">
+            <input class="form-control" id="password" type="password" name="password" placeholder="Enter your Password">
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="submit" value="Submit">Submit</button>
+      </div>
+    </div>
     </fieldset>
 </form>
         </div>

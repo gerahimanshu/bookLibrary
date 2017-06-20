@@ -109,7 +109,7 @@
                 var author = authors[i];
         
             %> 
-            <option><%=author.name%></option>
+            <option value=<%=author._id%>> <%=author.name%> </option>
          
             <% } %>
              </select><br>
@@ -123,7 +123,7 @@
                 var category = categorie[j];
         
             %> 
-            <option><%=category.name%></option>
+            <option value=<%=category._id%>><%=category.name%></option>
          
             <% } %>
             </select><br>

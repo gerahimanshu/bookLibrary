@@ -3,6 +3,8 @@
 module.exports = function(app){
 
 	var controller = require("../controller")(app);
+	var signinController = require("../controller/register")(app);
+	var findName = require("../model/author")(app);
 
 	var init = function()
 	{
@@ -88,6 +90,21 @@ module.exports = function(app){
 		    res.render('signin');
 		});
 
+
+		app.post('/signin', function(req,res){
+			var signinData = req.body;
+			signinController.signin(signinData, function(err, data){
+				if(err){
+		    		//TODO:
+		    		console.error(err);
+		    		res.send(err.toString());
+
+		    	}else{
+
+		    	}
+			})
+		})
+
 		app.get('/register', function(req, res){
 		    res.render('register');
 		});
@@ -112,7 +129,9 @@ module.exports = function(app){
 
 		app.get('/list_of_books', function(req, res){
 		    res.render('list_of_books');
-		}); 
+		});
+
+
 		
 	}
 

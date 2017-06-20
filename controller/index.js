@@ -4,10 +4,11 @@ module.exports = function(app){
 	var authorController = require("./author")(app);
 	var categoryController = require("./category")(app);
 	var registerController = require("./register")(app);
+	var listOfBooksController = require("./list_of_books")(app);
 
 	//Constructor method
 	var init = function(){
-	bookController.init();
+
 	};
 
 	return {	
@@ -15,6 +16,7 @@ module.exports = function(app){
 		book: bookController,
 		author: authorController,
 		category: categoryController,
-		register: registerController
+		register: registerController,
+		listOfBooks: listOfBooksController
 	};
 };
