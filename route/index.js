@@ -23,8 +23,12 @@ module.exports = function(app){
 		app.get('/create_book', function(req, res){
 		    res.render('create_book');
 		});
-		app.post('/createbook', function(req, res){
+
+
+
+		app.post('/create_book', function(req, res){
 		    var book = req.body;
+		    console.log("Request Object", req);
 		    controller.book.createBook(book, function(error, book){
 		    	console.log("Data received");
 		    	if(error){
@@ -100,7 +104,11 @@ module.exports = function(app){
 		    		res.send(err.toString());
 
 		    	}else{
-
+		    		var id = data._id;
+   		    		var myObj = {id};
+		    		console.log(myObj);
+		    		res.render('authorization',{myObj: myObj});
+		    		
 		    	}
 			})
 		})

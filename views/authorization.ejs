@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <% include headerSignin %>
+    
+</head>
+
+<body>
+
+    
+    <hr>
+    <hr>
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+    		<div id="result"></div>
+
+
+
+
+		<script>
+
+				(function(){
+					var accessTokenObj = "<%= myObj.id %>";
+					if (typeof(Storage) !== "undefined") {
+			    		localStorage.setItem("access_token", accessTokenObj);
+			    	
+					}
+					else{
+					document.getElementById("result").innerHTML = "Sorry your browser does not support local storage";
+					}	
+				})()
+
+				(function(window, $, localStorage){
+                $(document).ready(function() {
+
+                    addAuthorizationHeader();
+                
+                });
+
+                /**
+                 * Add authorization header for each form post method call.
+                 */
+                var addAuthorizationHeader = function(){
+                    $.ajaxSetup({
+                        beforeSend: function (xhr)
+                        {
+                           xhr.setRequestHeader("Authorization","Token token=\"" +  localStorage.getItem("access_token")  +"\"");
+                           console.log(access_token);        
+                        }
+                    });
+                };
+
+                
+                
+        })(window, $, localStorage);
+
+						
+		</script>
+
+        </div>
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                 
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+</body>
+
+</html>

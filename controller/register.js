@@ -57,7 +57,7 @@ module.exports = function(app){
     									_id: uuid
     								}
     							)
-    							accessToken.save();
+    							accessToken.save(callback);
     						}
     							
 						});
