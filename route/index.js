@@ -5,6 +5,9 @@ module.exports = function(app){
 	var controller = require("../controller")(app);
 	var signinController = require("../controller/register")(app);
 	var findName = require("../model/author")(app);
+	var tokenModel = require("../model/token");
+	var userModel = require("../model/register");
+
 
 	var init = function()
 	{
@@ -15,20 +18,45 @@ module.exports = function(app){
 
 	var route = function()
 	{
+		app.use(function(req, res, next){
+			var token = req.headers.authorization;
+			if(!token){
+				console.log("no token");
+				next();
+			}
+			else{
+				var pattern = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
+				var match = pattern.exec(token);
+				var id = match[0];
+				
+				tokenModel.findOne({_id:id}, function(err, token){
+					if(err)
+						console.log(err);
+					else{
+						
+						userModel.findOne({_id:token.userId}, function(err, user){
+							console.log(user.fname);
+						})
+
+					}
+				})
+				next();
+			}
+		})
+
 		app.get('/index', function(req, res){
 		    res.render('index');
 		});
 
 
 		app.get('/create_book', function(req, res){
+
 		    res.render('create_book');
 		});
 
-
-
 		app.post('/create_book', function(req, res){
 		    var book = req.body;
-		    console.log("Request Object", req);
+		   
 		    controller.book.createBook(book, function(error, book){
 		    	console.log("Data received");
 		    	if(error){
@@ -42,6 +70,7 @@ module.exports = function(app){
 		    		res.send("<p>Data added successfully</p>");	
 		    	}	
 		    })
+
 		    
 		});
 

@@ -28,36 +28,53 @@
 					var accessTokenObj = "<%= myObj.id %>";
 					if (typeof(Storage) !== "undefined") {
 			    		localStorage.setItem("access_token", accessTokenObj);
-			    	
 					}
 					else{
 					document.getElementById("result").innerHTML = "Sorry your browser does not support local storage";
 					}	
 				})()
 
-				(function(window, $, localStorage){
+			(function(window, $, localStorage){
                 $(document).ready(function() {
 
+                	alert("hello");
                     addAuthorizationHeader();
-                
+
+                    //submitClickEvent();
                 });
 
                 /**
                  * Add authorization header for each form post method call.
                  */
                 var addAuthorizationHeader = function(){
+
                     $.ajaxSetup({
+                        alert("hello");
                         beforeSend: function (xhr)
                         {
-                           xhr.setRequestHeader("Authorization","Token token=\"" +  localStorage.getItem("access_token")  +"\"");
-                           console.log(access_token);        
+                           xhr.setRequestHeader("Authorization","Token token=\"" +  localStorage.getItem("access_token")  +"\"");        
                         }
                     });
                 };
 
-                
-                
+                /**
+                 * [submitClickEvent description]
+                 * @return {[type]} [description]
+                 */
+                var submitClickEvent = function(){
+                    $("form").submit(function(){
+
+                    });
+                    $("button").click(function(){
+                        $("form").submit();                        
+                    });
+                };
+
         })(window, $, localStorage);
+
+                
+                
+        
 
 						
 		</script>

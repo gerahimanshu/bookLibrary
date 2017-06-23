@@ -18,9 +18,9 @@ module.exports = function(app){
 			callback(new Error("Book name is required"), null);
 		}else if(!book.isbn){
 			callback(new Error("Book isbn is required"), null);
-		}else if(!book.image){
+		}/*else if(!book.image){
 			callback(new Error("Book Cover Image is required"), null);
-		}else if(!book.author){
+		}*/else if(!book.author){
 			callback(new Error("Book Author is required"), null);
 		}else if(!book.category){
 			callback(new Error("Book Category is required"), null);			
